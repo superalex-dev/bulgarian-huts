@@ -726,23 +726,41 @@ ul {
 
 .route-item {
   background: var(--white);
-  padding: 15px;
-  border-radius: 5px;
+  padding: 20px;
+  border-radius: 8px;
   border-left: 4px solid var(--primary-color);
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.route-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .route-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.route-header strong {
+  font-size: 1.1rem;
+  color: var(--text-color);
+  flex: 1;
+  min-width: 200px;
 }
 
 .route-difficulty {
-  padding: 4px 12px;
-  border-radius: 15px;
+  padding: 6px 14px;
+  border-radius: 20px;
   font-size: 0.85rem;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .difficulty-лек {
@@ -760,11 +778,81 @@ ul {
   color: #c62828;
 }
 
-.route-details {
+.route-description {
+  color: #555;
+  line-height: 1.7;
+  margin: 15px 0;
+  font-size: 0.95rem;
+}
+
+.route-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin: 15px 0;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 5px;
+}
+
+.route-stat {
   display: flex;
-  gap: 20px;
+  align-items: center;
+  gap: 8px;
+}
+
+.stat-icon {
+  font-size: 1.2rem;
+}
+
+.stat-label {
   color: #666;
   font-size: 0.9rem;
+}
+
+.stat-value {
+  font-weight: 600;
+  color: var(--primary-color);
+  font-size: 0.95rem;
+}
+
+.route-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.route-link {
+  text-decoration: none;
+  display: inline-block;
+}
+
+.routes-info {
+  margin-top: 25px;
+  padding: 15px;
+  background: #e3f2fd;
+  border-radius: 5px;
+  border-left: 4px solid #2196f3;
+}
+
+.routes-info p {
+  margin: 0;
+  color: #1565c0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.routes-info a {
+  color: #1976d2;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.routes-info a:hover {
+  color: #0d47a1;
 }
 
 .nearby-list {
@@ -1050,5 +1138,23 @@ ul {
   .thumbnail {
       width: 80px;
       height: 80px;
+  }
+  
+  .route-stats {
+      grid-template-columns: 1fr;
+  }
+  
+  .route-links {
+      flex-direction: column;
+  }
+  
+  .route-link {
+      width: 100%;
+      text-align: center;
+  }
+  
+  .route-header {
+      flex-direction: column;
+      align-items: flex-start;
   }
 }
