@@ -61,7 +61,7 @@
             <option value="likes-desc">Най-харесвани</option>
             <option value="name-asc">Име: А → Я</option>
           </select>
-          <button class="btn btn-secondary" onclick="clearFilters()">Изчисти филтри</button>
+          <button class="btn btn-secondary" id="clearFiltersBtn">Изчисти филтри</button>
         </div>
         <div class="results-info">
           <span id="resultsCount">4 хижи</span>
@@ -70,7 +70,7 @@
 
       <div class="huts-grid" id="hutsGrid">
         <article class="hut-card" data-hut="mazalat" data-mountain="Стара Планина" data-price="25" data-name="Хижа Мазалат">
-          <div class="card-image" onclick="openHutDetails('mazalat')">
+          <div class="card-image" data-hut-click="mazalat">
             <img
               src="https://images.unsplash.com/photo-1519904981063-b0cf448d479e?q=80&w=600&auto=format"
               alt="Хижа Мазалат"
@@ -82,7 +82,7 @@
             </div>
           </div>
           <div class="card-content">
-            <h2 onclick="openHutDetails('mazalat')">Хижа Мазалат</h2>
+            <h2 data-hut-click="mazalat">Хижа Мазалат</h2>
             <div class="hut-meta">
               <span>📍 1650м надм.в.</span>
               <span>🛏️ 40 места</span>
@@ -99,19 +99,19 @@
               <span class="price">25 лв/нощ</span>
               <div class="action-buttons">
                 <div class="like-wrapper">
-                  <button class="btn-like" data-hut-id="mazalat" onclick="toggleLike(this)">
+                  <button class="btn-like" data-hut-id="mazalat">
                     🤍 Харесай
                   </button>
                   <span class="like-count" data-hut-count="mazalat">0</span>
                 </div>
-                <button class="btn btn-small" onclick="openBookingModal('mazalat', 'Хижа Мазалат', 25)">Резервирай</button>
+                <button class="btn btn-small" data-booking="mazalat">Резервирай</button>
               </div>
             </div>
           </div>
         </article>
 
         <article class="hut-card" data-hut="ribni-ezera" data-mountain="Рила" data-price="30" data-name="Хижа Рибни Езера">
-          <div class="card-image" onclick="openHutDetails('ribni-ezera')">
+          <div class="card-image" data-hut-click="ribni-ezera">
             <img
               src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=600&auto=format"
               alt="Хижа Рибни Езера"
@@ -123,7 +123,7 @@
             </div>
           </div>
           <div class="card-content">
-            <h2 onclick="openHutDetails('ribni-ezera')">Хижа Рибни Езера</h2>
+            <h2 data-hut-click="ribni-ezera">Хижа Рибни Езера</h2>
             <div class="hut-meta">
               <span>📍 2200м надм.в.</span>
               <span>🛏️ 60 места</span>
@@ -140,19 +140,19 @@
               <span class="price">30 лв/нощ</span>
               <div class="action-buttons">
                 <div class="like-wrapper">
-                  <button class="btn-like" data-hut-id="ribni-ezera" onclick="toggleLike(this)">
+                  <button class="btn-like" data-hut-id="ribni-ezera">
                     🤍 Харесай
                   </button>
                   <span class="like-count" data-hut-count="ribni-ezera">0</span>
                 </div>
-                <button class="btn btn-small" onclick="openBookingModal('ribni-ezera', 'Хижа Рибни Езера', 30)">Резервирай</button>
+                <button class="btn btn-small" data-booking="ribni-ezera">Резервирай</button>
               </div>
             </div>
           </div>
         </article>
 
         <article class="hut-card" data-hut="vihren" data-mountain="Пирин" data-price="20" data-name="Хижа Вихрен">
-          <div class="card-image" onclick="openHutDetails('vihren')">
+          <div class="card-image" data-hut-click="vihren">
             <img
               src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=600&auto=format"
               alt="Хижа Вихрен"
@@ -164,7 +164,7 @@
             </div>
           </div>
           <div class="card-content">
-            <h2 onclick="openHutDetails('vihren')">Хижа Вихрен</h2>
+            <h2 data-hut-click="vihren">Хижа Вихрен</h2>
             <div class="hut-meta">
               <span>📍 1950м надм.в.</span>
               <span>🛏️ 35 места</span>
@@ -181,19 +181,19 @@
               <span class="price">20 лв/нощ</span>
               <div class="action-buttons">
                 <div class="like-wrapper">
-                  <button class="btn-like" data-hut-id="vihren" onclick="toggleLike(this)">
+                  <button class="btn-like" data-hut-id="vihren">
                     🤍 Харесай
                   </button>
                   <span class="like-count" data-hut-count="vihren">0</span>
                 </div>
-                <button class="btn btn-small" onclick="openBookingModal('vihren', 'Хижа Вихрен', 20)">Резервирай</button>
+                <button class="btn btn-small" data-booking="vihren">Резервирай</button>
               </div>
             </div>
           </div>
         </article>
 
         <article class="hut-card" data-hut="yavorov" data-mountain="Пирин" data-price="28" data-name="Хижа Яворов">
-          <div class="card-image" onclick="openHutDetails('yavorov')">
+          <div class="card-image" data-hut-click="yavorov">
             <img
               src="https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?q=80&w=600&auto=format"
               alt="Хижа Яворов"
@@ -205,7 +205,7 @@
             </div>
           </div>
           <div class="card-content">
-            <h2 onclick="openHutDetails('yavorov')">Хижа Яворов</h2>
+            <h2 data-hut-click="yavorov">Хижа Яворов</h2>
             <div class="hut-meta">
               <span>📍 1740м надм.в.</span>
               <span>🛏️ 50 места</span>
@@ -223,12 +223,12 @@
               <span class="price">28 лв/нощ</span>
               <div class="action-buttons">
                 <div class="like-wrapper">
-                  <button class="btn-like" data-hut-id="yavorov" onclick="toggleLike(this)">
+                  <button class="btn-like" data-hut-id="yavorov">
                     🤍 Харесай
                   </button>
                   <span class="like-count" data-hut-count="yavorov">0</span>
                 </div>
-                <button class="btn btn-small" onclick="openBookingModal('yavorov', 'Хижа Яворов', 28)">Резервирай</button>
+                <button class="btn btn-small" data-booking="yavorov">Резервирай</button>
               </div>
             </div>
           </div>
@@ -238,9 +238,9 @@
 
     <div id="bookingModal" class="modal">
       <div class="modal-content">
-        <span class="close-modal" onclick="closeBookingModal()">&times;</span>
+        <span class="close-modal" data-modal-close="booking">&times;</span>
         <h2 id="modalHutName">Резервация</h2>
-        <form id="bookingForm" onsubmit="handleBooking(event)">
+        <form id="bookingForm">
           <input type="hidden" id="modalHutId">
           <div class="form-group">
             <label for="bookingName">Име *</label>
@@ -272,7 +272,7 @@
 
     <div id="hutDetailsModal" class="modal">
       <div class="modal-content modal-large">
-        <span class="close-modal" onclick="closeHutDetails()">&times;</span>
+        <span class="close-modal" data-modal-close="details">&times;</span>
         <div id="hutDetailsContent"></div>
       </div>
     </div>

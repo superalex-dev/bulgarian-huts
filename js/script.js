@@ -341,6 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initializeHutsPage();
   initializeFavoritesPage();
+  initializeEventListeners();
   
   const likeButtons = document.querySelectorAll('.btn-like');
   const likeCounts = StorageManager.getLikeCounts();
@@ -577,6 +578,106 @@ function clearFilters() {
   filterHuts();
 }
 
+function initializeEventListeners() {
+  const clearFiltersBtn = document.getElementById('clearFiltersBtn');
+  if (clearFiltersBtn) {
+    clearFiltersBtn.addEventListener('click', clearFilters);
+  }
+
+  document.querySelectorAll('[data-hut-click]').forEach(element => {
+    element.addEventListener('click', function() {
+      const hutId = this.getAttribute('data-hut-click');
+      if (hutId) openHutDetails(hutId);
+    });
+  });
+
+  document.querySelectorAll('.btn-like').forEach(btn => {
+    btn.addEventListener('click', function() {
+      toggleLike(this);
+    });
+  });
+
+  document.querySelectorAll('[data-booking]').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const hutId = this.getAttribute('data-booking');
+      const hutCard = this.closest('.hut-card');
+      if (hutCard && hutId) {
+        const hutName = hutCard.getAttribute('data-name');
+        const price = parseInt(hutCard.getAttribute('data-price'));
+        if (hutName && price) {
+          openBookingModal(hutId, hutName, price);
+        }
+      }
+    });
+  });
+
+  const bookingForm = document.getElementById('bookingForm');
+  if (bookingForm) {
+    bookingForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      handleBooking(event);
+    });
+  }
+
+  document.querySelectorAll('[data-modal-close]').forEach(closeBtn => {
+    closeBtn.addEventListener('click', function() {
+      const modalType = this.getAttribute('data-modal-close');
+      if (modalType === 'booking') {
+        closeBookingModal();
+      } else if (modalType === 'details') {
+        closeHutDetails();
+      }
+    });
+  });
+
+  document.addEventListener('click', function(e) {
+    if (e.target.matches('[data-gallery-nav]')) {
+      const hutId = e.target.getAttribute('data-gallery-nav');
+      const direction = parseInt(e.target.getAttribute('data-direction'));
+      changeImage(hutId, direction);
+    }
+    
+    if (e.target.matches('[data-thumbnail]')) {
+      const hutId = e.target.getAttribute('data-thumbnail');
+      const index = parseInt(e.target.getAttribute('data-image-index'));
+      selectImage(hutId, index);
+    }
+    
+    if (e.target.matches('[data-booking-from-details]')) {
+      const hutId = e.target.getAttribute('data-booking-from-details');
+      const hut = HutData[hutId];
+      if (hut) {
+        closeHutDetails();
+        openBookingModal(hutId, hut.name, hut.price);
+      }
+    }
+    
+    if (e.target.matches('[data-review-modal]')) {
+      const hutId = e.target.getAttribute('data-review-modal');
+      openReviewModal(hutId);
+    }
+  });
+}
+
+document.addEventListener('click', function(e) {
+  if (e.target.matches('[data-hut-click]')) {
+    const hutId = e.target.getAttribute('data-hut-click');
+    if (hutId) openHutDetails(hutId);
+  }
+  
+  if (e.target.matches('[data-booking]')) {
+    const hutId = e.target.getAttribute('data-booking');
+    const hutCard = e.target.closest('.hut-card');
+    if (hutCard && hutId) {
+      const hutName = hutCard.getAttribute('data-name');
+      const price = parseInt(hutCard.getAttribute('data-price'));
+      if (hutName && price) {
+        openBookingModal(hutId, hutName, price);
+      }
+    }
+  }
+});
+
 function updateRatingDisplay(hutId, ratingData) {
   if (!ratingData || ratingData.count === 0) return;
   
@@ -688,8 +789,8 @@ function openHutDetails(hutId) {
       <div class="image-gallery">
         <div class="main-image-container">
           <img src="${images[0]}" alt="${hut.name}" class="main-image" id="mainImage-${hutId}">
-          <button class="gallery-nav prev" onclick="changeImage('${hutId}', -1)">‹</button>
-          <button class="gallery-nav next" onclick="changeImage('${hutId}', 1)">›</button>
+          <button class="gallery-nav prev" data-gallery-nav="${hutId}" data-direction="-1">‹</button>
+          <button class="gallery-nav next" data-gallery-nav="${hutId}" data-direction="1">›</button>
           <div class="image-counter">
             <span id="currentImage-${hutId}">1</span> / ${images.length}
           </div>
@@ -698,7 +799,7 @@ function openHutDetails(hutId) {
           ${images.map((img, index) => `
             <img src="${img}" alt="${hut.name} - Снимка ${index + 1}" 
                  class="thumbnail ${index === 0 ? 'active' : ''}" 
-                 onclick="selectImage('${hutId}', ${index})">
+                 data-thumbnail="${hutId}" data-image-index="${index}">
           `).join('')}
         </div>
       </div>
@@ -828,7 +929,7 @@ function openHutDetails(hutId) {
           <div class="booking-widget">
             <h3>Резервирай сега</h3>
             <p class="price-large">${hut.price} лв/нощ</p>
-            <button class="btn btn-primary full-width" onclick="closeHutDetails(); openBookingModal('${hutId}', '${hut.name}', ${hut.price})">
+            <button class="btn btn-primary full-width" data-booking-from-details="${hutId}">
               Резервирай
             </button>
           </div>
@@ -842,7 +943,7 @@ function openHutDetails(hutId) {
                 <div class="rating-count">${ratingData.count} ${ratingData.count === 1 ? 'оценка' : 'оценки'}</div>
               </div>
             ` : ''}
-            <button class="btn btn-secondary full-width" onclick="openReviewModal('${hutId}')">Добави ревю</button>
+            <button class="btn btn-secondary full-width" data-review-modal="${hutId}">Добави ревю</button>
           </div>
         </div>
       </div>
@@ -943,12 +1044,12 @@ function initializeFavoritesPage() {
     const card = document.createElement('article');
     card.className = 'hut-card';
     card.innerHTML = `
-      <div class="card-image" onclick="openHutDetails('${hutId}')">
+      <div class="card-image" data-hut-click="${hutId}">
         <img src="${hut.image}" alt="${hut.name}">
         <span class="badge">${hut.mountain}</span>
       </div>
       <div class="card-content">
-        <h2 onclick="openHutDetails('${hutId}')">${hut.name}</h2>
+        <h2 data-hut-click="${hutId}">${hut.name}</h2>
         <div class="hut-meta">
           <span>📍 ${hut.altitude}</span>
           <span>🛏️ ${hut.capacity}</span>
@@ -957,7 +1058,7 @@ function initializeFavoritesPage() {
         <div class="card-actions">
           <span class="price">${hut.price} лв/нощ</span>
           <div class="action-buttons">
-            <button class="btn btn-small" onclick="openBookingModal('${hutId}', '${hut.name}', ${hut.price})">Резервирай</button>
+            <button class="btn btn-small" data-booking="${hutId}">Резервирай</button>
           </div>
         </div>
       </div>
