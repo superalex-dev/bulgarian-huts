@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="bg">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Българските Хижи | Дестинации</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrapper">
+        <div class="logo">
+          <a href="index.html">🏔️ BG Huts</a>
+        </div>
+        <nav class="main-nav">
+          <ul id="nav-list">
+            <li><a href="index.html">Начало</a></li>
+            <li><a href="huts.html" class="active">Хижи</a></li>
+            <li><a href="favorites.html">⭐ Любими</a></li>
+            <li><a href="contacts.html">Контакти</a></li>
+          </ul>
+          <button class="burger" id="burger-btn" aria-label="Меню">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container section">
+      <h1 class="page-title">Нашите Топ Предложения</h1>
+      <p class="page-subtitle">Избрани хижи с най-добрите гледки и условия.</p>
+
+      <div class="filters-section">
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="🔍 Търси по име..." class="search-input">
+        </div>
+        <div class="filters-row">
+          <select id="mountainFilter" class="filter-select" aria-label="Филтър по планина">
+            <option value="">Всички планини</option>
+            <option value="Стара Планина">Стара Планина</option>
+            <option value="Рила">Рила</option>
+            <option value="Пирин">Пирин</option>
+          </select>
+          <select id="priceFilter" class="filter-select" aria-label="Филтър по цена">
+            <option value="">Всички цени</option>
+            <option value="0-20">До 20 лв</option>
+            <option value="20-25">20-25 лв</option>
+            <option value="25-30">25-30 лв</option>
+            <option value="30+">Над 30 лв</option>
+          </select>
+          <select id="sortSelect" class="filter-select" aria-label="Подредба">
+            <option value="default">Подредба по подразбиране</option>
+            <option value="price-asc">Цена: Ниска → Висока</option>
+            <option value="price-desc">Цена: Висока → Ниска</option>
+            <option value="likes-desc">Най-харесвани</option>
+            <option value="name-asc">Име: А → Я</option>
+          </select>
+          <button class="btn btn-secondary" onclick="clearFilters()">Изчисти филтри</button>
+        </div>
+        <div class="results-info">
+          <span id="resultsCount">4 хижи</span>
+        </div>
+      </div>
+
+      <div class="huts-grid" id="hutsGrid">
+        <article class="hut-card" data-hut="mazalat" data-mountain="Стара Планина" data-price="25" data-name="Хижа Мазалат">
+          <div class="card-image" onclick="openHutDetails('mazalat')">
+            <img
+              src="https://images.unsplash.com/photo-1519904981063-b0cf448d479e?q=80&w=600&auto=format"
+              alt="Хижа Мазалат"
+            />
+            <span class="badge">Стара Планина</span>
+            <div class="rating-badge">
+              <span class="stars" data-rating="mazalat">⭐⭐⭐⭐⭐</span>
+              <span class="rating-text" data-rating-text="mazalat">0</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <h2 onclick="openHutDetails('mazalat')">Хижа Мазалат</h2>
+            <div class="hut-meta">
+              <span>📍 1650м надм.в.</span>
+              <span>🛏️ 40 места</span>
+            </div>
+            <p>
+              Разположена в сърцето на планината, предлагаща невероятна гледка
+              към масива Триглав.
+            </p>
+            <div class="amenities">
+              <span class="amenity">🔥 Камина</span>
+              <span class="amenity">🍽️ Ресторант</span>
+            </div>
+            <div class="card-actions">
+              <span class="price">25 лв/нощ</span>
+              <div class="action-buttons">
+                <div class="like-wrapper">
+                  <button class="btn-like" data-hut-id="mazalat" onclick="toggleLike(this)">
+                    🤍 Харесай
+                  </button>
+                  <span class="like-count" data-hut-count="mazalat">0</span>
+                </div>
+                <button class="btn btn-small" onclick="openBookingModal('mazalat', 'Хижа Мазалат', 25)">Резервирай</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="hut-card" data-hut="ribni-ezera" data-mountain="Рила" data-price="30" data-name="Хижа Рибни Езера">
+          <div class="card-image" onclick="openHutDetails('ribni-ezera')">
+            <img
+              src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=600&auto=format"
+              alt="Хижа Рибни Езера"
+            />
+            <span class="badge">Рила</span>
+            <div class="rating-badge">
+              <span class="stars" data-rating="ribni-ezera">⭐⭐⭐⭐⭐</span>
+              <span class="rating-text" data-rating-text="ribni-ezera">0</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <h2 onclick="openHutDetails('ribni-ezera')">Хижа Рибни Езера</h2>
+            <div class="hut-meta">
+              <span>📍 2200м надм.в.</span>
+              <span>🛏️ 60 места</span>
+            </div>
+            <p>
+              Сгушена между върховете, идеална за почивка след преход в Рила.
+            </p>
+            <div class="amenities">
+              <span class="amenity">🔥 Камина</span>
+              <span class="amenity">🍽️ Ресторант</span>
+              <span class="amenity">🚿 Душ</span>
+            </div>
+            <div class="card-actions">
+              <span class="price">30 лв/нощ</span>
+              <div class="action-buttons">
+                <div class="like-wrapper">
+                  <button class="btn-like" data-hut-id="ribni-ezera" onclick="toggleLike(this)">
+                    🤍 Харесай
+                  </button>
+                  <span class="like-count" data-hut-count="ribni-ezera">0</span>
+                </div>
+                <button class="btn btn-small" onclick="openBookingModal('ribni-ezera', 'Хижа Рибни Езера', 30)">Резервирай</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="hut-card" data-hut="vihren" data-mountain="Пирин" data-price="20" data-name="Хижа Вихрен">
+          <div class="card-image" onclick="openHutDetails('vihren')">
+            <img
+              src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=600&auto=format"
+              alt="Хижа Вихрен"
+            />
+            <span class="badge">Пирин</span>
+            <div class="rating-badge">
+              <span class="stars" data-rating="vihren">⭐⭐⭐⭐⭐</span>
+              <span class="rating-text" data-rating-text="vihren">0</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <h2 onclick="openHutDetails('vihren')">Хижа Вихрен</h2>
+            <div class="hut-meta">
+              <span>📍 1950м надм.в.</span>
+              <span>🛏️ 35 места</span>
+            </div>
+            <p>
+              Изходна точка за най-високия връх в Пирин. Лесен достъп с
+              автомобил.
+            </p>
+            <div class="amenities">
+              <span class="amenity">🚗 Паркинг</span>
+              <span class="amenity">🍽️ Ресторант</span>
+            </div>
+            <div class="card-actions">
+              <span class="price">20 лв/нощ</span>
+              <div class="action-buttons">
+                <div class="like-wrapper">
+                  <button class="btn-like" data-hut-id="vihren" onclick="toggleLike(this)">
+                    🤍 Харесай
+                  </button>
+                  <span class="like-count" data-hut-count="vihren">0</span>
+                </div>
+                <button class="btn btn-small" onclick="openBookingModal('vihren', 'Хижа Вихрен', 20)">Резервирай</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="hut-card" data-hut="yavorov" data-mountain="Пирин" data-price="28" data-name="Хижа Яворов">
+          <div class="card-image" onclick="openHutDetails('yavorov')">
+            <img
+              src="https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?q=80&w=600&auto=format"
+              alt="Хижа Яворов"
+            />
+            <span class="badge">Пирин</span>
+            <div class="rating-badge">
+              <span class="stars" data-rating="yavorov">⭐⭐⭐⭐⭐</span>
+              <span class="rating-text" data-rating-text="yavorov">0</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <h2 onclick="openHutDetails('yavorov')">Хижа Яворов</h2>
+            <div class="hut-meta">
+              <span>📍 1740м надм.в.</span>
+              <span>🛏️ 50 места</span>
+            </div>
+            <p>
+              Любимо място на всички планинари заради уюта и гостоприемството.
+            </p>
+            <div class="amenities">
+              <span class="amenity">🔥 Камина</span>
+              <span class="amenity">🍽️ Ресторант</span>
+              <span class="amenity">🚿 Душ</span>
+              <span class="amenity">📶 WiFi</span>
+            </div>
+            <div class="card-actions">
+              <span class="price">28 лв/нощ</span>
+              <div class="action-buttons">
+                <div class="like-wrapper">
+                  <button class="btn-like" data-hut-id="yavorov" onclick="toggleLike(this)">
+                    🤍 Харесай
+                  </button>
+                  <span class="like-count" data-hut-count="yavorov">0</span>
+                </div>
+                <button class="btn btn-small" onclick="openBookingModal('yavorov', 'Хижа Яворов', 28)">Резервирай</button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <div id="bookingModal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal" onclick="closeBookingModal()">&times;</span>
+        <h2 id="modalHutName">Резервация</h2>
+        <form id="bookingForm" onsubmit="handleBooking(event)">
+          <input type="hidden" id="modalHutId">
+          <div class="form-group">
+            <label for="bookingName">Име *</label>
+            <input type="text" id="bookingName" required>
+          </div>
+          <div class="form-group">
+            <label for="bookingEmail">Имейл *</label>
+            <input type="email" id="bookingEmail" required>
+          </div>
+          <div class="form-group">
+            <label for="bookingDate">Дата на пристигане *</label>
+            <input type="date" id="bookingDate" required>
+          </div>
+          <div class="form-group">
+            <label for="bookingNights">Нощувки *</label>
+            <input type="number" id="bookingNights" min="1" max="30" value="1" required>
+          </div>
+          <div class="form-group">
+            <label for="bookingGuests">Брой гости *</label>
+            <input type="number" id="bookingGuests" min="1" max="10" value="1" required>
+          </div>
+          <div class="booking-summary">
+            <p>Обща сума: <strong id="bookingTotal">0</strong> лв</p>
+          </div>
+          <button type="submit" class="btn btn-primary full-width">Потвърди резервация</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="hutDetailsModal" class="modal">
+      <div class="modal-content modal-large">
+        <span class="close-modal" onclick="closeHutDetails()">&times;</span>
+        <div id="hutDetailsContent"></div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="container footer-content">
+        <p>&copy; <span id="year"></span> Българските Хижи.</p>
+      </div>
+    </footer>
+    <script src="js/script.js"></script>
+  </body>
+</html>

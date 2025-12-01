@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="bg">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Българските Хижи | Любими</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrapper">
+        <div class="logo">
+          <a href="index.html">🏔️ BG Huts</a>
+        </div>
+        <nav class="main-nav">
+          <ul id="nav-list">
+            <li><a href="index.html">Начало</a></li>
+            <li><a href="huts.html">Хижи</a></li>
+            <li><a href="favorites.html" class="active">⭐ Любими</a></li>
+            <li><a href="contacts.html">Контакти</a></li>
+          </ul>
+          <button class="burger" id="burger-btn" aria-label="Меню">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container section">
+      <h1 class="page-title">Моите Любими Хижи</h1>
+      <div id="favoritesContainer" class="huts-grid">
+        <div class="empty-state">
+          <p>Нямате харесани хижи все още.</p>
+          <a href="huts.html" class="btn btn-primary">Разгледай хижите</a>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-content">
+        <p>&copy; <span id="year"></span> Българските Хижи.</p>
+      </div>
+    </footer>
+    <script src="js/script.js"></script>
+  </body>
+</html>
+

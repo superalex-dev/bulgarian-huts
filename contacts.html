@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="bg">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Българските Хижи | Контакти</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrapper">
+        <div class="logo">
+          <a href="index.html">🏔️ BG Huts</a>
+        </div>
+        <nav class="main-nav">
+          <ul id="nav-list">
+            <li><a href="index.html">Начало</a></li>
+            <li><a href="huts.html">Хижи</a></li>
+            <li><a href="favorites.html">⭐ Любими</a></li>
+            <li><a href="contacts.html" class="active">Контакти</a></li>
+          </ul>
+          <button class="burger" id="burger-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container section">
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <h1>Свържете се с нас</h1>
+          <p>
+            Имате въпроси за маршрути, условия или искате да препоръчате хижа?
+            Попълнете формата и ние ще се свържем с вас.
+          </p>
+          <ul>
+            <li>📧 info@bghuts.com</li>
+            <li>📞 +359 888 123 456</li>
+            <li>📍 гр. София, бул. България 1</li>
+          </ul>
+        </div>
+
+        <form id="contactForm" class="contact-form">
+          <div class="form-group">
+            <label for="name">Вашето име *</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Иван Петров"
+            />
+            <small class="error-msg" id="nameError"></small>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Имейл адрес *</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="ivan@example.com"
+            />
+            <small class="error-msg" id="emailError"></small>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Съобщение *</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              placeholder="Здравейте..."
+            ></textarea>
+            <small class="error-msg" id="messageError"></small>
+          </div>
+
+          <button type="submit" class="btn btn-primary full-width">
+            Изпрати запитване
+          </button>
+          <div id="successMessage" class="success-box">
+            Благодарим! Вашето съобщение беше изпратено успешно.
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-content">
+        <p>&copy; <span id="year"></span> Българските Хижи.</p>
+      </div>
+    </footer>
+    <script src="js/script.js"></script>
+  </body>
+</html>
